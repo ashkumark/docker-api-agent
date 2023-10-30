@@ -60,8 +60,15 @@ pipeline {
 
         stage('Start docker-compose') {
             steps {
-                sh 'docker-compose -f docker-compose-api.yaml up -d --no-color --wait'
                 echo 'Check permissions 2'
+                sh 'ls -l'
+                sh 'whoami'
+                echo "Current workspace is $WORKSPACE"
+                sh 'docker-compose ps'
+
+                sh 'docker-compose -f docker-compose-api.yaml up -d --no-color --wait'
+
+                echo 'Check permissions 3'
                 sh 'ls -l'
                 sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
