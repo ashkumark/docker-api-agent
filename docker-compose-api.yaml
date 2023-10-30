@@ -15,7 +15,7 @@ services:
     networks:
       - rest
     volumes:
-      - reports-volume:/docker-jenkins-test/target
+      - reports-api-volume:/docker-jenkins-test/target
     environment:
       - TYPE="@API"
     entrypoint: ./runner.sh
