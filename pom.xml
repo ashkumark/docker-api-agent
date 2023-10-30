@@ -152,17 +152,17 @@
                             <executions>
                                 <execution>
                                     <id>copy-resources</id>
-                                    <phase>generate-sources</phase>
+                                    <phase>install</phase>
                                     <goals>
                                         <goal>copy-resources</goal>
                                     </goals>
                                     <configuration>
                                        <!-- <overwrite>true</overwrite>-->
-                                        <outputDirectory>${basedir}/target</outputDirectory>
+                                        <outputDirectory>${basedir}/target/</outputDirectory>
                                         <resources>
                                             <resource>
-                                                <directory>${basedir}/src</directory>
-            									<filtering>true</filtering>
+                                                <directory>${basedir}/src/</directory>
+            									<!--<filtering>true</filtering>-->
                                                 <includes>
                                                     <include>**/*.*</include>
                                                 </includes>
