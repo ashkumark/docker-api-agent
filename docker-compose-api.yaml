@@ -12,12 +12,24 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - "-v $HOME/.m2:/root/.m2"
-    entrypoint: ./runner-api.sh
     networks:
       - rest
     volumes:
-      - reports-api-volume:/home/docker-jenkins-test/target/
-    #environment:
-    #  - TYPE="@API"
+      - reports-volume:/docker-jenkins-test/target
+    environment:
+      - TYPE="@API"
+    entrypoint: ./runner.sh
+
+#  api-test-service:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#      args:
+#        - "-v $HOME/.m2:/root/.m2"
+#    entrypoint: ./runner-api.sh
+#    networks:
+#      - rest
+#    volumes:
+#      - reports-api-volume:/home/docker-jenkins-test/target/
+#    #environment:
+#    #  - TYPE="@API"
