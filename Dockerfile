@@ -52,7 +52,7 @@ RUN groupadd docker
 RUN usermod -aG docker jenkins
 RUN usermod -aG sudo jenkins
 
-#RUN chown -R jenkins:jenkins /home/docker-jenkins-test
-#RUN chmod u+w /home/docker-jenkins-test
+RUN chown -R jenkins:jenkins /home/docker-jenkins-test
+RUN chmod u+w /home/docker-jenkins-test
 
 USER jenkins
