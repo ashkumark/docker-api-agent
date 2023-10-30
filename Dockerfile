@@ -1,5 +1,5 @@
 
-FROM jenkins/jenkins:jdk11
+FROM jenkins/jenkins:jdk17
 #FROM jenkins/jenkins:lts
 LABEL maintainer="ash"
 
