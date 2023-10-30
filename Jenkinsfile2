@@ -57,21 +57,21 @@ pipeline {
         stage('Start docker-compose') {
             steps {
 
-                echo 'Check permissions 1'
+                echo "Check permissions 1"
                 sh 'ls -lrt'
                 sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
 
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color'
 
-                sh ''' 
-                    docker exec -it docker-api-agent-composer-api-test-service-1 bash'
+                /*sh '''
+                    docker exec -it docker-api-agent-composer-api-test-service-1 bash
                     echo 'Check permissions 2'
                     sh 'ls -lrt'
                     sh 'whoami'
                     echo "Current workspace is $WORKSPACE"
                     exit
-                '''
+                '''*/
 
                 echo 'Check permissions 3'
                 sh 'ls -lrt'
