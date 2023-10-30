@@ -14,11 +14,16 @@ pipeline {
 	stages {
         stage('Docker System Prune') {
             steps {
+                echo 'Check permissions 1'
+                sh ls -l
+                sh whoami
+                echo "Current workspace is $WORKSPACE"
                 sh 'docker system prune -a --volumes -f'
+                sh 'docker ps'
             }
         }
 
-        stage('Build based on Dockerfile') {
+        stage('Check tooling versions') {
 /*            agent {
                 dockerfile {
                     filename 'Dockerfile'
@@ -56,6 +61,10 @@ pipeline {
         stage('Start docker-compose') {
             steps {
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color --wait'
+                echo 'Check permissions 2'
+                sh ls -l
+                sh whoami
+                echo "Current workspace is $WORKSPACE"
                 sh 'docker-compose ps'
             }
         }
@@ -67,11 +76,21 @@ pipeline {
                     echo "Current workspace/basedir is ${basedir}"
                 }*/
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
+                echo 'Check permissions 3'
+                sh ls -l
+                sh whoami
+                echo "Current workspace is $WORKSPACE"
+                sh 'docker-compose ps'
             }
         }
 
         stage('Generate HTML reports') {
             steps {
+                echo 'Check permissions 4'
+                sh ls -l
+                sh whoami
+                echo "Current workspace is $WORKSPACE"
+                sh 'docker-compose ps'
                 cucumber buildStatus: '',
                         reportTitle: 'Cucumber report',
                         fileIncludePattern: '**/*.json',
