@@ -160,7 +160,7 @@
                                         <outputDirectory>${basedir}/target</outputDirectory>
                                         <resources>
                                             <resource>
-                                                <directory>${basedir}/src</directory>
+                                                <directory>${basedir}/src/test/resources</directory>
             									<filtering>true</filtering>
                                                 <includes>
                                                     <include>**/*.*</include>
