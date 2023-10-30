@@ -64,14 +64,14 @@ pipeline {
 
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color'
 
-                sh '''
-                    docker exec -it docker-api-agent-composer-api-test-service-1 bash
+/*                sh '''
+                    docker exec docker-api-agent-composer-api-test-service-1 sh -c /usr/sbin/sshd
                     echo "Check permissions 2"
                     sh 'ls -lrt'
                     sh 'whoami'
                     echo "Current workspace is $WORKSPACE"
                     sh 'exit'
-                '''
+                '''*/
 
                 echo "Check permissions 3"
                 sh 'ls -lrt'
