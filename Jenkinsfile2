@@ -12,21 +12,7 @@ pipeline {
     }
 	
 	stages {
-        stage('Docker System Prune') {
-            steps {
-                sh 'docker system prune -a --volumes -f'
-                sh 'docker ps'
-            }
-        }
-
         stage('Check tooling versions') {
-/*            agent {
-                dockerfile {
-                    filename 'Dockerfile'
-                    args '-v $HOME/.m2:/root/.m2'
-                    reuseNode true
-                }
-            }*/
             steps {
 /*                script {
                     currentWorkspace = "$WORKSPACE"
@@ -40,30 +26,23 @@ pipeline {
                 '''
             }
         }
-/*        stage("Check Docker version") {
-              steps {
-              sh '''
-                  docker version
-                  docker info
-                  docker-compose version
 
-                '''
-                  *//*     echo "basedir is - ${basedir}"
-                    mkdir -p ${basedir}/test
-                    ls -l*//*
-              }
-        }*/
+        stage('Docker System Prune') {
+            steps {
+                sh 'docker system prune -a --volumes -f'
+                sh 'docker ps'
+            }
+        }
 
         stage('Start docker-compose') {
             steps {
-
                 echo "Check permissions 1"
                 sh 'ls -lrt'
                 sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
 
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color'
-                sh 'sleep 120s'
+                //sh 'sleep 120s'
 
                 echo "Check permissions 2"
                 sh 'ls -lrt'
@@ -75,10 +54,10 @@ pipeline {
 
         stage('API Automation') {
             steps {
-/*                script {
-                    basedir = "$WORKSPACE"
-                    echo "Current workspace/basedir is ${basedir}"
-                }*/
+                script {
+                    currentWorkspace = "$WORKSPACE"
+                    echo "Current workspace is ${currentWorkspace}"
+                }
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
 
                 echo 'Check permissions 3'

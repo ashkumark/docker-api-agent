@@ -145,7 +145,7 @@
 			on project docker-api-agent2: Cannot create resource output directory: /home/docker-jenkins-test/target/test-classes-->
 			<!-- https://maven.apache.org/plugins/maven-resources-plugin/examples/copy-resources.html
 				https://maven.apache.org/plugins/maven-resources-plugin/ -->
-						<plugin>
+<!--						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-resources-plugin</artifactId>
                             <version>3.3.1</version>
@@ -157,12 +157,12 @@
                                         <goal>copy-resources</goal>
                                     </goals>
                                     <configuration>
-                                       <!-- <overwrite>true</overwrite>-->
+                                       &lt;!&ndash; <overwrite>true</overwrite>&ndash;&gt;
                                         <outputDirectory>${basedir}/target/</outputDirectory>
                                         <resources>
                                             <resource>
                                                 <directory>${basedir}/src/</directory>
-            									<!--<filtering>true</filtering>-->
+            									&lt;!&ndash;<filtering>true</filtering>&ndash;&gt;
                                                 <includes>
                                                     <include>**/*.*</include>
                                                 </includes>
@@ -171,7 +171,7 @@
                                     </configuration>
                                 </execution>
                             </executions>
-                        </plugin>
+                        </plugin>-->
 
 		</plugins>
 	</build>
