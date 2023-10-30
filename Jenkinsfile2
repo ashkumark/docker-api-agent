@@ -15,8 +15,8 @@ pipeline {
         stage('Docker System Prune') {
             steps {
                 echo 'Check permissions 1'
-                sh ls -l
-                sh whoami
+                sh 'ls -l'
+                sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
                 sh 'docker system prune -a --volumes -f'
                 sh 'docker ps'
@@ -62,8 +62,8 @@ pipeline {
             steps {
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color --wait'
                 echo 'Check permissions 2'
-                sh ls -l
-                sh whoami
+                sh 'ls -l'
+                sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
                 sh 'docker-compose ps'
             }
@@ -77,8 +77,8 @@ pipeline {
                 }*/
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
                 echo 'Check permissions 3'
-                sh ls -l
-                sh whoami
+                sh 'ls -l'
+                sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
                 sh 'docker-compose ps'
             }
@@ -87,8 +87,8 @@ pipeline {
         stage('Generate HTML reports') {
             steps {
                 echo 'Check permissions 4'
-                sh ls -l
-                sh whoami
+                sh 'ls -l'
+                sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
                 sh 'docker-compose ps'
                 cucumber buildStatus: '',
