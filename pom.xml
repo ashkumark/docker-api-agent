@@ -146,24 +146,25 @@
 			<!-- https://maven.apache.org/plugins/maven-resources-plugin/examples/copy-resources.html
 				https://maven.apache.org/plugins/maven-resources-plugin/ -->
 						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-resources-plugin</artifactId>
                             <version>3.3.1</version>
                             <executions>
                                 <execution>
                                     <id>copy-resources</id>
-                                    <phase>validate</phase>
+                                    <phase>generate-sources</phase>
                                     <goals>
-                                        <goal>testResources</goal>
+                                        <goal>copy-resources</goal>
                                     </goals>
                                     <configuration>
-                                        <overwrite>true</overwrite>
+                                       <!-- <overwrite>true</overwrite>-->
                                         <outputDirectory>${basedir}/target</outputDirectory>
                                         <resources>
                                             <resource>
-                                                <directory>${basedir}/src/test/resources</directory>
+                                                <directory>${basedir}/src</directory>
             									<filtering>true</filtering>
                                                 <includes>
-                                                    <include>**/*.*</include>
+                                                    <include>**/*.properties</include>
                                                 </includes>
                                             </resource>
                                         </resources>
