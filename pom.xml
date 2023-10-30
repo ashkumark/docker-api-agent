@@ -11,6 +11,11 @@
 		<rest-assured.version>5.1.0</rest-assured.version>
 		<selenium.version>3.141.59</selenium.version>
 		<java-hamcrest.version>2.0.0.0</java-hamcrest.version>
+		<baseFolder>${basedir}</baseFolder>
+		<project.root.dir>${basedir}</project.root.dir>
+		<target.root.dir>${basedir}/target</target.root.dir>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
 	<dependencies>
@@ -135,8 +140,38 @@
 					</includes>
 				</configuration>
 			</plugin>
+
+			<!--Failed to execute goal org.apache.maven.plugins:maven-resources-plugin:3.3.1:testResources (default-testResources)
+			on project docker-api-agent2: Cannot create resource output directory: /home/docker-jenkins-test/target/test-classes-->
+			<!-- https://maven.apache.org/plugins/maven-resources-plugin/examples/copy-resources.html
+				https://maven.apache.org/plugins/maven-resources-plugin/ -->
+						<plugin>
+                            <artifactId>maven-resources-plugin</artifactId>
+                            <version>3.3.1</version>
+                            <executions>
+                                <execution>
+                                    <id>copy-resources</id>
+                                    <phase>validate</phase>
+                                    <goals>
+                                        <goal>testResources</goal>
+                                    </goals>
+                                    <configuration>
+                                        <overwrite>true</overwrite>
+                                        <outputDirectory>${basedir}/target</outputDirectory>
+                                        <resources>
+                                            <resource>
+                                                <directory>${basedir}/src</directory>
+            									<filtering>true</filtering>
+                                                <includes>
+                                                    <include>**/*.*</include>
+                                                </includes>
+                                            </resource>
+                                        </resources>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+
 		</plugins>
-
-
 	</build>
 </project>
