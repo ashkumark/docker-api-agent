@@ -1,0 +1,23 @@
+version: "3.0"
+
+networks: 
+  grid:
+  rest:
+  
+volumes:
+  reports-api-volume:
+ 
+services:
+  api-test-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - "-v $HOME/.m2:/root/.m2"
+    entrypoint: ./runner-api.sh
+    networks:
+      - rest
+    volumes:
+      - reports-api-volume:/home/docker-jenkins-test/target/
+    #environment:
+    #  - TYPE="@API"
