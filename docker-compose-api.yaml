@@ -18,7 +18,7 @@ services:
       - reports-api-volume:/docker-jenkins-test/target
     environment:
       - TYPE="@API"
-    entrypoint: ./runner.sh
+    entrypoint: ./runner-api.sh
 
 #  api-test-service:
 #    build:
