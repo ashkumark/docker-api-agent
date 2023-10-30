@@ -63,17 +63,9 @@ pipeline {
                 echo "Current workspace is $WORKSPACE"
 
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color'
+                sh 'sleep 120s'
 
-/*                sh '''
-                    docker exec docker-api-agent-composer-api-test-service-1 sh -c /usr/sbin/sshd
-                    echo "Check permissions 2"
-                    sh 'ls -lrt'
-                    sh 'whoami'
-                    echo "Current workspace is $WORKSPACE"
-                    sh 'exit'
-                '''*/
-
-                echo "Check permissions 3"
+                echo "Check permissions 2"
                 sh 'ls -lrt'
                 sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
@@ -89,7 +81,7 @@ pipeline {
                 }*/
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
 
-                echo 'Check permissions 4'
+                echo 'Check permissions 3'
                 sh 'ls -lrt'
                 sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
@@ -99,7 +91,7 @@ pipeline {
 
         stage('Generate HTML reports') {
             steps {
-                echo 'Check permissions 5'
+                echo 'Check permissions 4'
                 sh 'ls -lrt'
                 sh 'whoami'
                 echo "Current workspace is $WORKSPACE"
