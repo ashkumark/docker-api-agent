@@ -69,6 +69,10 @@ pipeline {
 
         stage('Generate HTML reports') {
             steps {
+                echo 'Copy artifacts from docker container to workspace'
+                sh 'mkdir -p $WORKSPACE/reports/'
+                sh 'docker cp /reports-api-volume/* $WORKSPACE/reports/'
+
                 echo 'Check permissions 4'
                 sh 'ls -lrt'
                 sh 'whoami'
