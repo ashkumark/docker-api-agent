@@ -12,6 +12,9 @@ echo "API tests run completed..."
 echo "Check permissions in runner"
 ls -lrt
 whoami
+cd target/
+ls -lrt
 echo "Current workspace is $WORKSPACE"
+docker ps
 #docker cp api-test-container:/home/docker-jenkins-test/target /home/ash_root/reports
 
