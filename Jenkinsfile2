@@ -71,7 +71,7 @@ pipeline {
             steps {
                 echo 'Copy artifacts from docker container to workspace'
                 sh 'mkdir -p $WORKSPACE/reports/'
-                sh 'docker cp /reports-api-volume/* $WORKSPACE/reports/'
+                sh 'docker cp /reports-api-volume/* jenkins-master8:/$WORKSPACE/reports/'
 
                 echo 'Check permissions 4'
                 sh 'ls -lrt'
