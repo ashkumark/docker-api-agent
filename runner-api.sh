@@ -16,5 +16,6 @@ cd target/
 ls -lrt
 echo "Current workspace is $WORKSPACE"
 
-#docker cp api-test-container:/home/docker-jenkins-test/target /home/ash_root/reports
-
+echo 'Copy artifacts from docker container to workspace'
+mkdir -p $WORKSPACE/reports/
+docker cp api-test-container:/home/docker-jenkins-test/target $WORKSPACE/reports/

@@ -79,7 +79,7 @@ pipeline {
                         //jsonReportDirectory: "./target",
                         //jsonReportDirectory: "${currentWorkspace}/target",
                         //jsonReportDirectory: "/home/docker-jenkins-test/target/",
-                        jsonReportDirectory: "/reports-api-volume/_data/target/",
+                        jsonReportDirectory: "$WORKSPACE/reports/target/",
                         trendsLimit: 10,
                         classifications: [
                                 [
