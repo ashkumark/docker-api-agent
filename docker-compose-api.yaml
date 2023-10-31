@@ -22,6 +22,7 @@ services:
 #    entrypoint: ./runner-api.sh
 
 # Version 3 - issue Cannot create resource output directory: /home/docker-jenkins-test/target/test-classes
+# target folder has root permissions - drwxr-xr-x 2 root    root    4096 Oct 30 22:13 target
   api-test-service:
     build:
       context: .
