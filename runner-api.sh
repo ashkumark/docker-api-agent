@@ -21,8 +21,8 @@ echo "Current workspace is $WORKSPACE"
 ##install docker
 sleep 2s
 echo "Installing docker"
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin --no-install-recommends
+apt-get update
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin --no-install-recommends
 docker version
 #
 #echo "Copy target from docker container to workspace"

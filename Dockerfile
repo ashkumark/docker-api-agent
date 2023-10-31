@@ -54,6 +54,6 @@ RUN usermod -aG sudo jenkins
 
 RUN chown -R jenkins:jenkins /home/docker-jenkins-test/
 RUN chmod -R ug+rwx /home/docker-jenkins-test/
-RUN mkdir target && chown -R jenkins:jenkins target && chmod -R ug+rwx target
+RUN mkdir -p target && chown -R jenkins:jenkins target && chmod -R ug+rwx target
 
 USER jenkins
