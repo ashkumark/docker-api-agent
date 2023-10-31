@@ -8,19 +8,34 @@ volumes:
   reports-api-volume:
  
 services:
-  api-test-service:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: api-test-container
-    networks:
-      - rest
-    volumes:
-      - reports-api-volume:/home/docker-jenkins-test/target
-    environment:
-      - TYPE="@API"
-    entrypoint: ./runner-api.sh
+  # Version 3
+#  api-test-service:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: api-test-container
+#    networks:
+#      - rest
+#    volumes:
+#      - reports-api-volume:/home/docker-jenkins-test/target
+#    environment:
+#      - TYPE="@API"
+#    entrypoint: ./runner-api.sh
 
+ Version 2
+    api-test-service:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      networks:
+        - rest
+      volumes:
+        - reports-api-volume:/home/docker-jenkins-test/target
+      environment:
+        - TYPE="@API"
+      entrypoint: ./runner-api.sh
+
+# Version 1
 #  api-test-service:
 #    build:
 #      context: .

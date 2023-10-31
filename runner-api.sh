@@ -7,9 +7,9 @@ mvn test -Dtest=TestRunner -Dcucumber.filter.tags=$TYPE
 echo "API tests run completed..."
 
 #version 2 - copy target from container to host
-echo "Check permissions in runner"
-ls -lrt
-whoami
-echo "Current workspace is $WORKSPACE"
-docker cp api-test-container:/home/docker-jenkins-test/target /mnt/c/Users/Ash/Reports/
+#echo "Check permissions in runner"
+#ls -lrt
+#whoami
+#echo "Current workspace is $WORKSPACE"
+#docker cp api-test-container:/home/docker-jenkins-test/target /mnt/c/Users/Ash/Reports/
 
