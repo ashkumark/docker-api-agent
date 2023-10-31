@@ -71,7 +71,7 @@ pipeline {
                 // https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host
                 echo 'Copy artifacts from docker container to workspace'
                 script {
-                    CID = '$(docker run -d -v reports-api-volume:/reports-api-volume busybox true)'
+                    CID = sh '$(docker run -d -v reports-api-volume:/reports-api-volume busybox true)'
                     echo "CID is ${CID}"
                 }
                 sh 'mkdir -p $WORKSPACE/reports/'
