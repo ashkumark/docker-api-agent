@@ -18,7 +18,7 @@ RUN chmod +x ./runner-api.sh
 
 #Basic Utils
 RUN apt-get update
-RUN apt-get install -y wget curl jq unzip sudo tar --no-install-recommends
+RUN apt-get install -y wget curl jq unzip sudo tar acl --no-install-recommends
 
 #Maven
 ENV MAVEN_VERSION 3.9.5
@@ -52,7 +52,8 @@ RUN groupadd docker
 RUN usermod -aG docker jenkins
 RUN usermod -aG sudo jenkins
 
-RUN chown -R jenkins:jenkins /home/docker-jenkins-test/
-RUN chmod -R ug+rwx /home/docker-jenkins-test/
+#RUN chown -R jenkins:jenkins /home/docker-jenkins-test/
+#RUN chmod -R ug+rwx /home/docker-jenkins-test/
+RUN setfacl -m "u:jenkins:rwx" /home/docker-jenkins-test/
 
 USER jenkins
