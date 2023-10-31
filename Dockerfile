@@ -55,5 +55,6 @@ RUN usermod -aG sudo jenkins
 #RUN chown -R jenkins:jenkins /home/docker-jenkins-test/
 #RUN chmod -R ug+rwx /home/docker-jenkins-test/
 RUN setfacl -R -m u:jenkins:rwx, g:jenkins:rwx, o:jenkins:rwx /home/docker-jenkins-test
+RUN getfacl /home/docker-jenkins-test
 
 USER jenkins
