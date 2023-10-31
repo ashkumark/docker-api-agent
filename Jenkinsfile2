@@ -70,8 +70,9 @@ pipeline {
         stage('Generate HTML reports') {
             steps {
                 echo 'Copy artifacts from docker container to workspace'
+                sh 'CID = $(docker run -d -v reports-api-volume:/reports-api-volume busybox true)'
                 sh 'mkdir -p $WORKSPACE/reports/'
-                sh 'docker cp /reports-api-volume/* jenkins-master8:/$WORKSPACE/reports/'
+                sh 'docker cp $CID:/* $WORKSPACE/reports/'
 
                 echo 'Check permissions 4'
                 sh 'ls -lrt'
@@ -83,7 +84,7 @@ pipeline {
                         //jsonReportDirectory: "./target",
                         //jsonReportDirectory: "${currentWorkspace}/target",
                         //jsonReportDirectory: "/home/docker-jenkins-test/target/",
-                        jsonReportDirectory: "$WORKSPACE/reports/target/",
+                        jsonReportDirectory: "$WORKSPACE/reports/",
                         trendsLimit: 10,
                         classifications: [
                                 [
