@@ -12,10 +12,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: api-test-container
     networks:
       - rest
     volumes:
-      - reports-api-volume:/docker-jenkins-test/target
+      - reports-api-volume:home/docker-jenkins-test/target
     environment:
       - TYPE="@API"
     entrypoint: ./runner-api.sh
