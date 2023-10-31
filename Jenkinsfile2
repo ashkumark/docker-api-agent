@@ -68,10 +68,14 @@ pipeline {
 
         stage('Generate HTML reports') {
             steps {
+                // https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host
                 echo 'Copy artifacts from docker container to workspace'
-                sh 'CID = $(docker run -d -v reports-api-volume:/reports-api-volume busybox true)'
+                script {
+                    CID = '$(docker run -d -v reports-api-volume:/reports-api-volume busybox true)'
+                    echo "CID is ${CID}"
+                }
                 sh 'mkdir -p $WORKSPACE/reports/'
-                sh 'docker cp $CID:/* $WORKSPACE/reports/'
+                sh 'docker cp ${CID}:/* $WORKSPACE/reports/'
 
                 echo 'Check permissions 4'
                 sh 'ls -lrt'
