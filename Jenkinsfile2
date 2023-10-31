@@ -4,8 +4,8 @@ pipeline {
 	//agent { dockerfile true }
 	environment {
 		//dockerImage = ''
-        //currentWorkspace = ''
-        CID = ''
+        currentWorkspace = ''
+        //CID = ''
 	}
 
     options {
@@ -15,10 +15,10 @@ pipeline {
 	stages {
         stage('Check tooling versions') {
             steps {
-/*                script {
+                script {
                     currentWorkspace = "$WORKSPACE"
                     echo "Current workspace is ${currentWorkspace}"
-                }*/
+                }
                 echo "Check Docker version.."
                 sh '''
                   docker version
@@ -53,10 +53,6 @@ pipeline {
 
         stage('API Automation') {
             steps {
-                script {
-                    currentWorkspace = "$WORKSPACE"
-                    echo "Current workspace is ${currentWorkspace}"
-                }
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
 
                 echo 'Check permissions 3'
@@ -68,15 +64,16 @@ pipeline {
 
         stage('Generate HTML reports') {
             steps {
-                // https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host
+/*                // https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host
                 echo 'Copy artifacts from docker container to workspace'
                 script {
                     CID = sh '$(docker run -d -v reports-api-volume:/reports-api-volume busybox true)'
                     echo "CID is ${CID}"
                 }
                 sh 'mkdir -p $WORKSPACE/reports/'
-                sh 'docker cp ${CID}:/* $WORKSPACE/reports/'
+                sh 'docker cp ${CID}:/* $WORKSPACE/reports/'*/
 
+                sh 'mkdir -p $WORKSPACE/reports/'
                 echo 'Check permissions 4'
                 sh 'ls -lrt'
                 sh 'whoami'
