@@ -2,10 +2,12 @@ pipeline {
 	 agent any
 	//agent { label 'jenkins-agent' }
 	//agent { dockerfile true }
-/*	environment {
-		dockerImage = ''
-        basedir = ''
-	}*/
+/*
+	environment {
+		//dockerImage = ''
+        currentWorkspace = ''
+	}
+*/
 
     options {
         timeout(time: 10, unit: 'MINUTES')
@@ -39,7 +41,6 @@ pipeline {
                 echo "Check permissions 1"
                 sh 'ls -lrt'
                 sh 'whoami'
-                echo "Current workspace is $WORKSPACE"
 
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color'
                 //sh 'sleep 120s'
@@ -47,7 +48,6 @@ pipeline {
                 echo "Check permissions 2"
                 sh 'ls -lrt'
                 sh 'whoami'
-                echo "Current workspace is $WORKSPACE"
                 sh 'docker-compose ps'
             }
         }
@@ -63,7 +63,6 @@ pipeline {
                 echo 'Check permissions 3'
                 sh 'ls -lrt'
                 sh 'whoami'
-                echo "Current workspace is $WORKSPACE"
                 sh 'docker-compose ps'
             }
         }
@@ -73,14 +72,14 @@ pipeline {
                 echo 'Check permissions 4'
                 sh 'ls -lrt'
                 sh 'whoami'
-                echo "Current workspace is $WORKSPACE"
                 sh 'docker ps'
                 cucumber buildStatus: '',
                         reportTitle: 'Cucumber report',
                         fileIncludePattern: '**/*.json',
                         //jsonReportDirectory: "./target",
                         //jsonReportDirectory: "${currentWorkspace}/target",
-                        jsonReportDirectory: "/home/docker-jenkins-test/target/",
+                        //jsonReportDirectory: "/home/docker-jenkins-test/target/",
+                        jsonReportDirectory: "/reports-api-volume/_data/target/",
                         trendsLimit: 10,
                         classifications: [
                                 [
