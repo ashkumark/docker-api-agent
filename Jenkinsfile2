@@ -36,15 +36,19 @@ pipeline {
         }
 
         stage('Start docker-compose') {
-            // version 2 - reuseNode
+            // version 2 - reuseNode - WIP
             agent {
                 dockerfile {
                     filename 'Dockerfile'
+                    additionalBuildArgs  '--tag api-repo:$BRANCH_NAME'
                     args '-v $HOME/.m2:/root/.m2'
+                    args '-v $WORKSPACE:/home/docker-jenkins-test/ -w /home/docker-jenkins-test/'
                     reuseNode true
                 }
             }
             steps {
+                echo "Check image"
+                sh 'docker image ls'
                 echo "Check permissions 1"
                 sh 'ls -lrt'
                 sh 'whoami'
