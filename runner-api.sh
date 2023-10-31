@@ -19,11 +19,11 @@ echo "Current workspace is $WORKSPACE"
 
 #version 3
 ##install docker
-sleep 2s
-echo "Installing docker"
-apt-get update
-apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin --no-install-recommends
-docker version
+#sleep 2s
+#echo "Installing docker"
+#apt-get update
+#apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin --no-install-recommends
+#docker version
 #
 #echo "Copy target from docker container to workspace"
 #docker cp api-test-container:/home/docker-jenkins-test/target/ ${currentWorkspace}/reports/

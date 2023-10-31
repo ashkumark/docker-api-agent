@@ -36,6 +36,14 @@ pipeline {
         }
 
         stage('Start docker-compose') {
+            // version 2 - reuseNode
+            agent {
+                dockerfile {
+                    filename 'Dockerfile'
+                    args '-v $HOME/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
             steps {
                 echo "Check permissions 1"
                 sh 'ls -lrt'

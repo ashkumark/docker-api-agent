@@ -21,13 +21,26 @@ services:
 #      - TYPE="@API"
 #    entrypoint: ./runner-api.sh
 
-# Version 3 - issue Cannot create resource output directory: /home/docker-jenkins-test/target/test-classes
-# target folder has root permissions - drwxr-xr-x 2 root    root    4096 Oct 30 22:13 target
+# Version 3 - issue - reports-api-volume is populaetd but cannot copy stuff from volume to workspace
+#  api-test-service:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: api-test-container
+#    networks:
+#      - rest
+#    volumes:
+#      - reports-api-volume:/home/docker-jenkins-test/target/
+#    environment:
+#      - TYPE="@API"
+#    entrypoint: ./runner-api.sh
+
+# Version 4 - try reuseNode
   api-test-service:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: api-test-container
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#   container_name: api-test-container
     networks:
       - rest
     volumes:
