@@ -11,5 +11,5 @@ echo "Check permissions in runner"
 ls -lrt
 whoami
 echo "Current workspace is $WORKSPACE"
-docker cp api-test-container:/home/docker-jenkins-test/target /home/ash_root/reports
+#docker cp api-test-container:/home/docker-jenkins-test/target /home/ash_root/reports
 

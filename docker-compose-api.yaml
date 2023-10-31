@@ -21,7 +21,7 @@ services:
 #      - TYPE="@API"
 #    entrypoint: ./runner-api.sh
 
-# Version 3
+# Version 3 - issue Cannot create resource output directory: /home/docker-jenkins-test/target/test-classes
   api-test-service:
     build:
       context: .
@@ -30,7 +30,7 @@ services:
     networks:
       - rest
     volumes:
-      - reports-api-volume:/home/docker-jenkins-test/target
+      - reports-api-volume:/home/docker-jenkins-test/target/
     environment:
       - TYPE="@API"
     entrypoint: ./runner-api.sh
