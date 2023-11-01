@@ -68,9 +68,9 @@ pipeline {
                 echo "Check permissions in api automation stage"
                 sh 'ls -lrt'
                 sh 'whoami'
-                sh 'cd /var/jenkins_home/workspace/'
+/*                sh 'cd /var/jenkins_home/workspace/'
                 sh 'mkdir -p reports'
-                sh 'cd -'
+                sh 'cd -'*/
 
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
 
