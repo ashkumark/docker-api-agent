@@ -65,7 +65,8 @@ pipeline {
 
         stage('API Automation') {
             steps {
-                sh 'mkdir -p $WORKSPACE/reports/'
+                sh 'cd /var/jenkins_home/workspace/'
+                sh 'mkdir -p reports'
 
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
 
@@ -97,7 +98,7 @@ pipeline {
                         //jsonReportDirectory: "./target",
                         //jsonReportDirectory: "${currentWorkspace}/target",
                         //jsonReportDirectory: "/home/docker-jenkins-test/target/",
-                        jsonReportDirectory: "$WORKSPACE/reports/",
+                        jsonReportDirectory: "/var/jenkins_home/workspace/reports/target/Reports/",
                         trendsLimit: 10,
                         classifications: [
                                 [
@@ -112,19 +113,20 @@ pipeline {
                         alwaysLinkToLastBuild: false,
                         keepAll              : true,
                         //reportDir: "${currentWorkspace}/target/Reports/",
-                        reportDir            : "/home/docker-jenkins-test/target/Reports/",
+                        //reportDir            : "/home/docker-jenkins-test/target/Reports/",
+                        reportDir            : "/var/jenkins_home/workspace/reports/target/Reports/",
                         reportFiles          : 'automated-test-report.html',
                         reportName           : 'Extent Test Report'
                 ]
 
-                publishHTML target: [
+                /*publishHTML target: [
                         allowMissing         : false,
                         alwaysLinkToLastBuild: false,
                         keepAll              : true,
                         reportDir            : "/home/docker-jenkins-test/target/cucumber-html-report/",
                         reportFiles          : 'regression-tests.html',
                         reportName           : 'Cucumber Test Report'
-                ]
+                ]*/
             }
         }
     }
