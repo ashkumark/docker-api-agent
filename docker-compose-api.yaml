@@ -45,7 +45,7 @@ services:
       - rest
     volumes:
       - reports-api-volume:/home/docker-jenkins-test/target/
-      - /var/jenkins_home/workspace/reports:/home/docker-jenkins-test/target/
+    #  - /var/jenkins_home/workspace/reports:/home/docker-jenkins-test/target/
     environment:
       - TYPE="@API"
     entrypoint: ./runner-api.sh
