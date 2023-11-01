@@ -18,7 +18,7 @@ services:
       - rest
     volumes:
 #      - '/var/jenkins_home/workspace/reports:/home/docker-jenkins-test/target/'
-#      - reports-api-volume:/home/docker-jenkins-test/target/
+      - reports-api-volume:/home/docker-jenkins-test/target/
       - '${PWD}/target:/home/docker-jenkins-test/target/'
 #      - '.:/home/docker-jenkins-test/target/'
 #      - type: volume
