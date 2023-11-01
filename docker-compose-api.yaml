@@ -23,7 +23,7 @@ services:
 #        source: reports-api-volume
 #        target: /home/docker-jenkins-test/target/
       - type: bind
-        source: "$pwd"
+        source: "$(pwd)"
         target: /home/docker-jenkins-test/target/
     environment:
       - TYPE="@API"
