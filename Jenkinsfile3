@@ -47,8 +47,7 @@ pipeline {
                 }
             }*/
             steps {
-                echo "Check image"
-                sh 'docker image ls'
+                echo "Current workspace is ${currentWorkspace}"
                 echo "Check permissions 1"
                 sh 'ls -lrt'
                 sh 'whoami'
@@ -57,6 +56,7 @@ pipeline {
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color'
                 //sh 'sleep 120s'
 
+                echo "Current workspace is ${currentWorkspace}"
                 echo "Check permissions 2"
                 sh 'ls -lrt'
                 sh 'whoami'
@@ -79,6 +79,7 @@ pipeline {
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
 
                 echo 'Check permissions 3'
+                echo "Current workspace is ${currentWorkspace}"
                 sh 'ls -lrt'
                 sh 'whoami'
                 sh 'docker-compose ps'
@@ -97,6 +98,7 @@ pipeline {
                 sh 'docker cp ${CID}:/* $WORKSPACE/reports/'*/
 
                 echo 'Check permissions 4'
+                echo "Current workspace is ${currentWorkspace}"
                 sh 'ls -lrt'
                 sh 'whoami'
                 sh 'docker ps'

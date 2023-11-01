@@ -10,11 +10,11 @@ echo "API tests run completed..."
 #version 2 - copy target from container to host
 sleep 3s
 echo "Check permissions in runner"
+pwd
 ls -lrt
 whoami
 cd target/
 ls -lrt
-echo "Current workspace is $WORKSPACE"
 
 #version 3
 ##install docker
