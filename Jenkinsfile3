@@ -51,7 +51,9 @@ pipeline {
                 echo "Check permissions 1"
                 sh 'ls -lrt'
                 sh 'whoami'
-                sh 'mkdir -p target && chown -R jenkins:jenkins target && chmod -R ug+rwx target'
+                sh 'mkdir -p reports'
+                sh 'ls -lrt'
+                //sh 'mkdir -p target && chown -R jenkins:jenkins target && chmod -R ug+rwx target'
 
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color'
                 //sh 'sleep 120s'
@@ -68,13 +70,6 @@ pipeline {
             steps {
                 echo "Check permissions in api automation stage"
                 echo "Current workspace is ${currentWorkspace}"
-/*                sh 'pwd'
-                sh 'ls -lrt'
-                sh 'whoami'
-                sh 'cd /var/jenkins_home/workspace/'
-                sh 'mkdir -p reports'
-                sh 'ls -lrt'
-                sh 'cd -'*/
 
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
 
