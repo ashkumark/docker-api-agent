@@ -72,6 +72,7 @@ pipeline {
                 sh 'whoami'
                 sh 'cd /var/jenkins_home/workspace/'
                 sh 'mkdir -p reports'
+                sh 'ls -lrt'
                 sh 'cd -'
 
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
