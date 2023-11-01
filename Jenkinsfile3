@@ -66,11 +66,13 @@ pipeline {
         stage('API Automation') {
             steps {
                 echo "Check permissions in api automation stage"
+                echo "Current workspace is ${currentWorkspace}"
+                sh 'pwd'
                 sh 'ls -lrt'
                 sh 'whoami'
-/*                sh 'cd /var/jenkins_home/workspace/'
+                sh 'cd /var/jenkins_home/workspace/'
                 sh 'mkdir -p reports'
-                sh 'cd -'*/
+                sh 'cd -'
 
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
 
