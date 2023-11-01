@@ -66,8 +66,8 @@ pipeline {
         stage('API Automation') {
             steps {
                 echo "Check permissions in api automation stage"
-                ls -lrt
-                whoami
+                sh 'ls -lrt'
+                sh 'whoami'
                 sh 'cd /var/jenkins_home/workspace/'
                 sh 'mkdir -p reports'
                 sh 'cd -'
