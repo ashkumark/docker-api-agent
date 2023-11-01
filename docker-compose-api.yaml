@@ -17,14 +17,16 @@ services:
     networks:
       - rest
     volumes:
+#      - '/var/jenkins_home/workspace/reports:/home/docker-jenkins-test/target/'
+      - "$(pwd):/home/docker-jenkins-test/target/"
 #      - reports-api-volume:/home/docker-jenkins-test/target/
 #      - '/var/jenkins_home/workspace/reports:/home/docker-jenkins-test/target/'
 #      - type: volume
 #        source: reports-api-volume
 #        target: /home/docker-jenkins-test/target/
-      - type: bind
-        source: "$(pwd)"
-        target: /home/docker-jenkins-test/target/
+#      - type: bind
+#        source: "$(pwd)"
+#        target: /home/docker-jenkins-test/target/
     environment:
       - TYPE="@API"
     entrypoint: ./runner-api.sh
