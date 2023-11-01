@@ -37,10 +37,10 @@ services:
 
 # Version 4 - try reuseNode
   api-test-service:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#   container_name: api-test-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-test-container
     networks:
       - rest
     volumes:
