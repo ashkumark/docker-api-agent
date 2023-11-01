@@ -8,7 +8,7 @@ volumes:
   reports-api-volume:
  
 services:
-  # Version 5 - try multiple volumes (bind mount & volume mount)
+  # Version 5 - try multiple volumes (bind mount / volume mount)
   api-test-service:
     build:
       context: .
@@ -17,8 +17,14 @@ services:
     networks:
       - rest
     volumes:
-      - reports-api-volume:/home/docker-jenkins-test/target/
-      - '/var/jenkins_home/workspace/reports:/home/docker-jenkins-test/target/'
+#      - reports-api-volume:/home/docker-jenkins-test/target/
+#      - '/var/jenkins_home/workspace/reports:/home/docker-jenkins-test/target/'
+      - type: volume
+        source: reports-api-volume
+        target: /home/docker-jenkins-test/target/
+      - type: bind
+        source: "$pwd/reports"
+        target: /home/docker-jenkins-test/target/
     environment:
       - TYPE="@API"
     entrypoint: ./runner-api.sh
