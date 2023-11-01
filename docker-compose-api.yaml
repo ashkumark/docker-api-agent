@@ -21,7 +21,7 @@ services:
 #      - TYPE="@API"
 #    entrypoint: ./runner-api.sh
 
-# Version 3 - issue - reports-api-volume is populaetd but cannot copy stuff from volume to workspace
+# Version 3 - issue - reports-api-volume is populated but cannot copy stuff from volume to workspace
 #  api-test-service:
 #    build:
 #      context: .
@@ -45,6 +45,7 @@ services:
       - rest
     volumes:
       - reports-api-volume:/home/docker-jenkins-test/target/
+      - /var/jenkins_home/workspace/reports:/home/docker-jenkins-test/target/
     environment:
       - TYPE="@API"
     entrypoint: ./runner-api.sh

@@ -37,7 +37,7 @@ pipeline {
 
         stage('Start docker-compose') {
             // version 2 - reuseNode - WIP
-            agent {
+/*            agent {
                 dockerfile {
                     filename 'Dockerfile'
                     additionalBuildArgs  '--tag api-repo:$BRANCH_NAME'
@@ -45,7 +45,7 @@ pipeline {
                     args '-v $WORKSPACE:/home/docker-jenkins-test/ -w /home/docker-jenkins-test/'
                     reuseNode true
                 }
-            }
+            }*/
             steps {
                 echo "Check image"
                 sh 'docker image ls'
@@ -65,6 +65,8 @@ pipeline {
 
         stage('API Automation') {
             steps {
+                sh 'mkdir -p $WORKSPACE/reports/'
+
                 sh 'docker-compose -f docker-compose-api.yaml run -e TYPE="@API" api-test-service'
 
                 echo 'Check permissions 3'
@@ -85,7 +87,6 @@ pipeline {
                 sh 'mkdir -p $WORKSPACE/reports/'
                 sh 'docker cp ${CID}:/* $WORKSPACE/reports/'*/
 
-                sh 'mkdir -p $WORKSPACE/reports/'
                 echo 'Check permissions 4'
                 sh 'ls -lrt'
                 sh 'whoami'
