@@ -51,8 +51,8 @@ pipeline {
                 echo "Check permissions 1"
                 sh 'ls -lrt'
                 sh 'whoami'
-                sh 'mkdir -p reports && chown -R jenkins:jenkins target && chmod -R ug+rwx reports'
-                sh 'mkdir -p target && chown -R jenkins:jenkins target && chmod -R ug+rwx target'
+                sh 'mkdir -p reports && chown -R jenkins:jenkins reports && chmod -R ug+rwx reports'
+                //sh 'mkdir -p target && chown -R jenkins:jenkins target && chmod -R ug+rwx target'
                 sh 'ls -lrt'
 
                 sh 'docker-compose -f docker-compose-api.yaml up -d --no-color'
